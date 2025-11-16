@@ -278,7 +278,37 @@ Return ONLY valid JSON, no markdown.`;
     });
   }
 });
+// Explain concept in detail
+app.post('/api/explain', async (req, res) => {
+  try {
+    const { concept } = req.body;
+    
+    if (!concept || concept.trim().length === 0) {
+      return res.status(400).json({ success: false, error: 'Concept is required' });
+    }
+    
+    const prompt = `Explain "${concept}" in detail with:
+1. Simple definition
+2. Key concepts
+3. Real-world examples
+4. Common misconceptions
 
+Format with clear sections and bullet points.`;
+    
+    const explanation = await rateLimitedRequest(async () => {
+      const result = await model.generateContent(prompt);
+      return result.response.text();
+    });
+
+    res.json({ success: true, explanation });
+  } catch (error) {
+    console.error('❌ Explain error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to generate explanation.'
+    });
+  }
+});
 // 3. Generate AI Study Schedule
 app.post('/api/schedule/generate', async (req, res) => {
   try {

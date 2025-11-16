@@ -1,10 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "/api",
-  withCredentials: true,
+  baseURL: "http://localhost:5000/api", // CHANGE THIS LINE
 });
-
 // Chat
 export const askChatbot = (question) =>
   API.post("/chat", { question, userId: "guest" });

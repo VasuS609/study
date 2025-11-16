@@ -5,6 +5,8 @@ import ModeSelector from './components/ModeSelector';
 import ChatInterface from './components/ChatInterface';
 import QuizGenerator from './components/QuizGenerator';
 import StatsDisplay from './components/StatsDisplay';
+import InteractiveLearning from './components/InteractiveLearning'; // ADD THIS
+import EmotionalSupport from './components/EmotionalSupport'; // ADD THIS
 import { useUserStats } from './hooks/useUserStats';
 import { useClock } from './hooks/useClock';
 
@@ -25,9 +27,12 @@ function App() {
     });
   };
 
-
   const handleTimeComplete = (minutes) => {
     updateStats({ studyMinutes: userStats.studyMinutes + minutes });
+  };
+
+  const handlePointsEarned = (points) => { // ADD THIS
+    console.log('Points earned:', points);
   };
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
@@ -57,8 +62,16 @@ function App() {
               <ChatInterface onQuestionAsked={handleQuestionAsked} />
             )}
 
+            {mode === 'interactive' && ( // ADD THIS
+              <InteractiveLearning onPointsEarned={handlePointsEarned} />
+            )}
+
             {mode === 'quiz' && (
               <QuizGenerator onQuizComplete={handleQuizComplete} />
+            )}
+
+            {mode === 'support' && ( // ADD THIS
+              <EmotionalSupport />
             )}
 
             {mode === 'stats' && (
