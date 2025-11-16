@@ -49,14 +49,17 @@ const ChatInterface = ({ onQuestionAsked }) => {
     let mounted = true;
     (async () => {
       try {
-        const res = await fetch('/api/health');
+        const healthUrl = import.meta.env.VITE_API_URL 
+          ? `${import.meta.env.VITE_API_URL}/health`
+          : 'http://localhost:5000/api/health';
+        const res = await fetch(healthUrl);
         if (!mounted) return;
         if (res.ok) {
           const data = await res.json();
           setAiModel(data.model || null);
         }
       } catch (e) {
-        // ignore health errors
+        console.error('Health check failed:', e);
       }
     })();
     return () => { mounted = false; };

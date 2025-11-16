@@ -6,9 +6,12 @@ require('dotenv').config();
 
 const app = express();
 
+// CORS configuration - permissive for development
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:3000", "http://localhost:8080"],
-  credentials: true
+  origin: '*',  // Allow all origins in development
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: false,  // Set to false when using origin: '*'
 }));
 
 app.use(express.json());
@@ -71,7 +74,8 @@ async function selectModel() {
       console.log('✅ Gemini model ready:', preferred);
       return;
     } catch (e) {
-      console.warn('⚠️ Gemini test call failed — falling back to mock model');
+      console.warn('⚠️ Gemini test call failed:', e.message);
+      console.warn('Falling back to mock model');
     }
   } catch (err) {
     console.warn('⚠️ Failed to initialize GoogleGenerativeAI:', err && err.message);

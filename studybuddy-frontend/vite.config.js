@@ -16,12 +16,6 @@ export default defineConfig({
     dedupe: ['react', 'react-dom']
   },
   server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-        rewrite: (path) => path,
-      },
-    },
+    port: 5173,
   },
 })

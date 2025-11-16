@@ -3,22 +3,22 @@
 # =========================
 /node_modules
 /studybuddy-frontend/node_modules
-/studyBuddy-backend/node_modules
+/studybuddy-backend/node_modules
 
 # =========================
 # Build / Output
 # =========================
 /studybuddy-frontend/dist
 /studybuddy-frontend/build
-/studyBuddy-backend/dist
-/studyBuddy-backend/build
+/studybuddy-backend/dist
+/studybuddy-backend/build
 
 # =========================
 # Env files / secrets
 # =========================
 *.env
 /studybuddy-frontend/.env
-/studyBuddy-backend/.env
+/studybuddy-backend/.env
 
 # =========================
 # Logs
