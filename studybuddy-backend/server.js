@@ -5,19 +5,15 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
 
 const app = express();
-
 app.use(cors({
   origin: [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "http://localhost:8080",
-    "https://aizenora.vercel.app",      // <-- YOUR FRONTEND
-    "https://zenora-mb28.onrender.com"  // <-- OPTIONAL: backend itself
+    "http://localhost:5173",          // local dev
+    "https://aizenora.vercel.app"     // your frontend (Vercel)
   ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }));
-
 
 app.use(express.json());
 
