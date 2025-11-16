@@ -1,0 +1,11 @@
+{
+  "name": "studybuddy",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix studybuddy-frontend\" \"npm run dev --prefix studybuddy-backend\""
+  }
+,
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
