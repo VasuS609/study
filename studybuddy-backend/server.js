@@ -20,7 +20,7 @@ app.use(cors({
 }));
 
 // Important: handle preflight
-app.options("*", cors());
+app.use(cors());
 
 // ------------------------------------------
 
