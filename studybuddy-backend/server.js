@@ -7,9 +7,17 @@ require('dotenv').config();
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:3000", "http://localhost:8080"],
-  credentials: true
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "http://localhost:8080",
+    "https://aizenora.vercel.app",      // <-- YOUR FRONTEND
+    "https://zenora-mb28.onrender.com"  // <-- OPTIONAL: backend itself
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
 }));
+
 
 app.use(express.json());
 
